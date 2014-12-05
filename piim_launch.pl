@@ -12,7 +12,7 @@ print OUT
 #PBS -q standard
 #PBS -W group_list=mbsulli
 #PBS -m bea
-#PBS -M ssolonen@email.arizona.edu
+#PBS -M ssolonen\@email.arizona.edu
 
 # loading modules and adjusting environmental variables
 . /usr/share/Modules/init/bash
