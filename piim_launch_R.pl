@@ -7,7 +7,7 @@ print OUT
 #PBS -o $ARGV[0]_R.out
 #PBS -l select=1:ncpus=1:mem=2Gb
 #PBS -l cput=400:00:00
-#PBS -l walltime=800:00:00
+#PBS -l walltime=400:00:00
 #PBS -l place=pack:shared
 #PBS -q standard
 #PBS -W group_list=mbsulli
