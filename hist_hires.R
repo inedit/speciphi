@@ -1,0 +1,8 @@
+Args<-commandArgs(TRUE)
+library(MASS)
+data1<-scan(Args[1])
+data2<-scan(Args[2])
+pdf(file=Args[4])
+hist(data1,freq=TRUE,breaks=seq(0,0.5,0.001), main=Args[3],xlab="pi or frq",col="blue")
+hist(data2,freq=TRUE,breaks=seq(0,0.5,0.002), add=T, col=rgb(0,1,0,0.5))
+dev.off()

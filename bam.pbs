@@ -1,0 +1,8 @@
+. /usr/share/Modules/init/bash
+
+module load perl/5.14.2
+module load samtools/0.1.18
+ 
+cd /rsgrps1/mbsulli/sergei/ann_genomes/bowtie_runs
+
+/rsgrps1/mbsulli/sergei/ann_genomes/bin/scripts/bam_to_xml.pl /rsgrps1/mbsulli/sergei/ann_genomes/bowtie_runs/test_S-MbCM25.sorted.bam /rsgrps1/mbsulli/sergei/ann_genomes/144_Cyano_Genomes_fa/S-MbCM25.fasta 5 >test_S-MbCM25.below5X.xml 2>below50.S-MbCM25.err

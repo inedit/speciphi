@@ -1,0 +1,13 @@
+args<-commandArgs(trailingOnly = TRUE)
+library(reshape2)
+freq_tab<-read.table(args[1], header=F, sep=",")
+breakpoints<-seq(0,0.5,0.002)
+freq_binned<-cut(freq_tab$V1,breakpoints,include.lowest=T)
+freq_binned_out<-melt(table(freq_binned))
+lapply(freq_binned_out, write, args[2], append=F, ncolumns=1)
+
+pi_tab<-read.table(args[3], header=F, sep=",")
+breakpoints<-seq(0,0.375,0.001)
+pi_binned<-cut(pi_tab$V1,breakpoints,include.lowest=T)
+pi_binned_out<-melt(table(pi_binned))
+lapply(pi_binned_out, write, args[4], append=F, ncolumns=1)

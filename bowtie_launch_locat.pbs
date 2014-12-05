@@ -1,0 +1,23 @@
+#!/bin/bash
+#PBS -N 144g_vs_locat
+#PBS -e 144g_vs_locat.err
+#PBS -o 144g_vs_locat.out
+#PBS -l select=1:ncpus=12:mem=23Gb
+#PBS -l cput=200:00:00
+#PBS -l walltime=400:00:00
+#PBS -l place=pack:shared
+#PBS -q standard
+#PBS -W group_list=mbsulli
+#PBS -m bea
+#PBS -M ssolonen@email.arizona.edu
+
+# loading modules and adjusting environmental variables
+. /usr/share/Modules/init/bash
+module load bowtie2/2.1.0
+cd /rsgrps1/mbsulli/sergei/ann_genomes/
+
+/usr/bin/time -v bowtie2 --phred64 --local -p 12 -D 20 -R 3 -N 1 -L 20 -i S,1,0.50 -x ./bowtie_db/144genomes.fa -1 ./metagenomes/VT_MG_cat_all.1.fastq -2 ./metagenomes/VT_MG_cat_all.2.fastq >./bowtie_runs/cat_all_vs/very_sensitive_local_concatenated_144genomes.sam
+cd ./bowtie_runs/cat_all_vs/
+samtools view -bT ../../144genomes.fa very_sensitive_local_concatenated_144genomes.sam > very_sensitive_local_concatenated_144genomes.bam 2> very_sensitive_local_concatenated_144genomes.bam.err
+samtools sort very_sensitive_local_concatenated_144genomes.bam very_sensitive_local_concatenated_144genomes.sorted
+samtools index very_sensitive_local_concatenated_144genomes.sorted.bam

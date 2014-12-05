@@ -1,0 +1,19 @@
+#!/bin/bash
+#PBS -N S-MbCM25_piim
+#PBS -e S-MbCM25_piim.err
+#PBS -o S-MbCM25_piim.out
+#PBS -l select=1:ncpus=5:mem=10Gb
+#PBS -l cput=400:00:00
+#PBS -l walltime=400:00:00
+#PBS -l place=pack:shared
+#PBS -q standard
+#PBS -W group_list=mbsulli
+#PBS -m bea
+#PBS -M ssolonen@email.arizona.edu
+
+# loading modules and adjusting environmental variables
+. /usr/share/Modules/init/bash
+
+cd /gsfs1/xdisk/ssolonen/piim/
+
+/usr/bin/time -v ./piim_r -i /rsgrps1/mbsulli/sergei/ann_genomes/bowtie_runs/test_S-MbCM25.below50X.xml -lk lk_n50_t0.01_allsmooth -joint-est >/rsgrps1/mbsulli/sergei/ann_genomes/bowtie_runs/test_S-MbCM25.below50X.xml.piim.out 2>/rsgrps1/mbsulli/sergei/ann_genomes/bowtie_runs/test_S-MbCM25.below50X.xml.piim.err
